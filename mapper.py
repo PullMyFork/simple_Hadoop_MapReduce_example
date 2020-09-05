@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 import sys
+from sklearn.feature_extraction import stop_words 
+
+stops = set(stop_words.ENGLISH_STOP_WORDS)
 
 # get all lines from stdin
 for line in sys.stdin:
@@ -13,7 +16,8 @@ for line in sys.stdin:
     words = line.split()
 
     # output tuples (word, 1) in tab-delimited format
-    stopwords = set(['the', 'and', '.',  ',', ':', ';', '!', '?'])
+    stopwords = set(['.',  ',', ':', ';', '!', '?'])
+    stopwords.update(stops)
 
     for word in words:
        if word not in stopwords: 
